@@ -2,7 +2,10 @@ public class Course
 {
     private String name;    // 课程名
     private int numStudents = 0;
+
     private boolean hasProcessor = false;
+    private boolean isCanceled = false;
+    private boolean isCommitted = false;
 
     public Course(String name)
     {
@@ -69,13 +72,37 @@ public class Course
         }
     }
 
-    private void cancel()
+    public boolean isAssigned()
     {
-        System.out.println("Course " + this.name + " canceled");
+        return this.hasProcessor;
+    }
+
+    public boolean isCanceled()
+    {
+        return this.isCanceled;
+    }
+
+    public boolean isCommitted()
+    {
+        return this.isCommitted;
+    }
+
+    public boolean isFull()
+    {
+        return this.numStudents == 10;
+    }
+
+    public void cancel()
+    {
+        this.isCanceled = true;
+        System.out.println("Course " + this.name + " was canceled");
     }
 
     private void commit()
     {
-        System.out.println("Course " + this.name + " committed with " + this.numStudents + "students");
+        this.isCommitted = true;
+        System.out.println("Course " + this.name + " was committed with " + this.numStudents + " students");
     }
+
+
 }
