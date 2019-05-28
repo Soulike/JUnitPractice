@@ -40,7 +40,11 @@ public class Course
 
     public void close()
     {
-        if (this.hasProcessor)
+        if (this.isFull())
+        {
+            this.commit();
+        }
+        else if (this.hasProcessor) // !this.isFull()
         {
             if (this.numStudents < 3)
             {
@@ -103,6 +107,4 @@ public class Course
         this.isCommitted = true;
         System.out.println("Course " + this.name + " was committed with " + this.numStudents + " students");
     }
-
-
 }
